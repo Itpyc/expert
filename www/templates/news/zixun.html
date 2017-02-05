@@ -1,0 +1,41 @@
+<ion-view view-title="在线咨询" hide-tabs="true">
+  <ion-content class="rj-stable-content" delegate-handle="messageDetailsScroll">
+    <div ng-repeat="item in messageDetails">
+      <p class="rj-message-time" ng-bind="item.time" ng-if="false"></p>
+      <div class="rj-message-wrap" ng-if="!item.isFromeMe">
+        <!--   <img ng-src="{{message.pic}}" class="rj-head-pic">-->
+        <img ng-src="img/ben.png" class="rj-head-pic">
+        <span class="rj-triangle-left"></span>
+        <p class="rj-message" ng-bind="item.content"></p>
+      </div>
+      <div class="rj-message-wrap" ng-if="item.isFromeMe">
+        <img src="img/doctor.png" class="rj-head-pic-right">
+        <span class="rj-triangle-right"></span>
+        <p class="rj-message-right" ng-bind="item.content"></p>
+      </div>
+    </div>
+    <script id="zx-popover.html" type="text/ng-template">
+      <ion-popover-view>
+        <ion-header-bar>
+          <h1 class="title">我的浮动框标题</h1>
+        </ion-header-bar>
+        <ion-content>
+          Hello!
+        </ion-content>
+      </ion-popover-view>
+    </script>
+  </ion-content>
+  <ion-footer-bar align-title="left" class="bar-light">
+    <div class="rj-footer-btn-wrap">
+      <button class="button button-icon icon ion-ios-plus-outline rj-footer-btn-left">
+      </button>
+    </div>
+    <label class="item item-input rj-footer-input">
+      <textarea msd-elastic ng-model="data.send_content"></textarea>
+      <div class="buttons">
+        <button class="rj-footer-btn button button-calm" on-tap="sendMessage()" >发送</button>
+      </div>
+    </label>
+  </ion-footer-bar>
+
+</ion-view>

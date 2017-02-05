@@ -1,0 +1,115 @@
+<ion-view view-title="我的预约" class="bar-clear" hide-nav-bar="false" hide-tabs="true">
+    <ion-content ng-show="activeNumber===1" style="margin-bottom: 30px;">
+        <div class="list">
+            <div class="card">
+                <div class="item item-divider item-dark">
+                    预约时间：11月15日下午
+                </div>
+                <div class="item item-text-wrap">
+                    <div>预约人：张三，男，30岁</div>
+                    <div style="padding-top: 10px;">
+                        预约信息：医生您好，我想在进行正脊治疗时，请您帮忙进行视频诊断。
+                    </div>
+                </div>
+                <div class="item tabs tabs-secondary tabs-icon-left">
+                    <a class="tab-item" href="#">
+                        <i class="icon ion-stats-bars fa fa-refresh"></i> 接受
+                    </a>
+                    <a class="tab-item" href="#">
+                        <i class="icon ion-android-remove-circle"></i> 拒绝
+                    </a>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+    <ion-content ng-show="activeNumber===2" style="margin-bottom: 30px;">
+        <div class="item item-divider">
+            <i class="icon ion-android-warning" style=""></i> 今日待处理
+        </div>
+        <div class="list">
+            <div class="card">
+                <div class="item item-divider item-dark">
+                    预约时间：11月15日下午
+                </div>
+                <div class="item item-text-wrap">
+                    <div>预约人：张三，男，30岁</div>
+                    <div style="padding-top: 10px;">
+                        预约信息：医生您好，我想在进行正脊治疗时，请您帮忙进行视频诊断。
+                    </div>
+                </div>
+                <div class="item tabs tabs-secondary tabs-icon-left">
+                    <a class="tab-item" href="#">
+                        <i class="icon ion-android-remove"></i> 终止
+                    </a>
+                    <a class="tab-item" href="#">
+                        <i class="icon ion-refresh"></i> 改期
+                    </a>
+                    <a class="tab-item" href="#">
+                        <i class="icon ion-ios-chatboxes"></i> 交流
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!--第二天-->
+        <div class="item item-divider">
+            <i class="icon ion-android-warning" style=""></i> 明日1月11日
+        </div>
+        <div class="list">
+            <div class="card">
+                <div class="item item-divider item-dark">
+                    预约时间：11月15日下午
+                </div>
+                <div class="item item-text-wrap">
+                    <div>预约人：张三，男，30岁</div>
+                    <div style="padding-top: 10px;">
+                        预约信息：医生您好，我想在进行正脊治疗时，请您帮忙进行视频诊断。
+                    </div>
+                </div>
+                <div class="item tabs tabs-secondary tabs-icon-left">
+                    <a class="tab-item" href="#">
+                        <i class="icon ion-android-remove"></i> 终止
+                    </a>
+                    <a class="tab-item" href="#">
+                        <i class="icon ion-refresh"></i> 改期
+                    </a>
+                    <a class="tab-item" href="#">
+                        <i class="icon ion-ios-chatboxes"></i> 交流
+                    </a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="item item-divider item-dark">
+                    预约时间：11月15日下午
+                </div>
+                <div class="item item-text-wrap">
+                    <div>预约人：张三，男，30岁</div>
+                    <div style="padding-top: 10px;">
+                        预约信息：医生您好，我想在进行正脊治疗时，请您帮忙进行视频诊断。
+                    </div>
+                </div>
+                <div class="item tabs tabs-secondary tabs-icon-left">
+                    <a class="tab-item" href="#">
+                        <i class="icon ion-android-remove"></i> 终止
+                    </a>
+                    <a class="tab-item" href="#">
+                        <i class="icon ion-refresh"></i> 改期
+                    </a>
+                    <a class="tab-item" href="#">
+                        <i class="icon ion-ios-chatboxes"></i> 交流
+                    </a>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+    <div class="bar bar-footer">
+        <div class="bar bar-header">
+            <div class="row" style="margin-top: -14px;">
+                <button ng-click="activeNumber=1" class="col button button-outline button-block button-dark" ng-class="{active:activeNumber===1}">未处理预约
+        </button>
+                <button ng-click="activeNumber=2" ng-class="{active:activeNumber===2}" class="col button button-outline button-block button-dark">待诊治预约
+        </button>
+            </div>
+        </div>
+    </div>
+</ion-view>

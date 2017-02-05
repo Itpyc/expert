@@ -1,0 +1,100 @@
+<ion-view view-title="消息中心" hide-nav-bar="true">
+  <div class="bar bar-header">
+    <h1 class="title">消息中心</h1>
+  </div>
+  <div class="bar bar-subheader">
+    <div class="row" style="margin-top: -14px;">
+      <button ng-click="activeNumber=1"
+              style="border-radius: 0;border-top-left-radius: 10px;border-bottom-left-radius: 10px;"
+              class="col button button-outline button-block button-positive" ng-class="{active:activeNumber===1}">视频问诊
+      </button>
+      <button ng-click="activeNumber=2" ng-class="{active:activeNumber===2}" style="border-radius: 0px;"
+              class="col button button-outline button-block button-positive">
+        咨询消息
+      </button>
+      <button ng-click="activeNumber=3" ng-class="{active:activeNumber===3}"
+              style="border-radius: 0;border-top-right-radius: 10px;border-bottom-right-radius: 10px;"
+              class="col button button-outline button-block button-positive">其他消息
+      </button>
+    </div>
+  </div>
+  <ion-content ng-show="activeNumber===1" style="margin-top: 80px;">
+    <div ng-show="showWenZhenInfo">
+      <div class="item item-avatar" style="">
+        <img ng-src="img/doctor.png" style="border-radius: 0;">
+        <p style="float: right">剩余接诊时间：<strong style="color: red;">{{leftTime}}</strong></p>
+        <h2>{{patientInfo_new.askUser}}</h2>
+        <p>{{patientInfo_new.askTime}}发出问诊请求</p>
+      </div>
+      <div class="item item-text-wrap" style="border-bottom: none !important;">
+        <h1 class="title spine-title" style="font-size: 1.5rem;text-align: center">病人基本信息</h1>
+        <div class="spine-sick-avatar" style="margin-top: 30px;text-align: center">
+          <img ng-src="img/bingrenxinxi.png">
+        </div>
+        <div>病人：张三，男，160</div>
+        <div style="margin-top: 10px;">自述：脊柱疼痛</div>
+        <div style="margin-top: 10px;">初诊：初步检查判断为T1/2出现病变</div>
+      </div>
+      <div class="item" style="padding: 5px 10px;">
+        <i class="icon ion-images" style="font-size: 20px;color: #660000;"></i>
+        <p class="pull-right" style="float: right;font-size: 10px;">{{wenzhenInfo.time}}</p>
+      </div>
+      <div class="row" style="margin-top: 10px;">
+        <div class="col">
+          <button class="button button-small button-block button-assertive" ng-click="refuseWZ();">不接诊</button>
+        </div>
+        <div class="col">
+          <button class="button button-small button-block button-calm" ng-click="acceptWZ();">接诊</button>
+        </div>
+      </div>
+    </div>
+    <div ng-show="!showWenZhenInfo" style="text-align: center;padding-top: 20%;">
+      <h3>当前无问诊请求</h3>
+    </div>
+  </ion-content>
+  <ion-content  ng-show="activeNumber===2" style="margin-top: 88px;">
+    <ion-list>
+      <div class=""  ng-repeat="item in messages">
+        <div class="item" style="padding-top: 5px;padding-bottom: 5px;font-size: 15px;">
+          {{item.type}}
+          <span style="float: right;">{{item.time}}</span>
+        </div>
+        <a class="item item-avatar" href="#/tab/msgs/zixun/{{item.id}}" style="border: none;">
+          <img ng-src="{{item.pic}}" style="border-radius: 5px;">
+          <h2>
+            <span>{{item.name}} </span>
+            <span style="color: #cccccc;font-size: smaller">| {{item.userSex=='1'?'女':'男'}} {{item.userAge}}</span>
+            <span style="float: right;color: #cccccc;font-size: 15px;color: #0c60ee;">未接诊</span>
+          </h2>
+          <p>{{item.wzMsg}}</p>
+        </a>
+        <div style="height: 10px;background: #eeeeee;width: 100%"></div>
+      </div>
+    </ion-list>
+  </ion-content>
+  <!--其他消息-->
+  <ion-content ng-show="activeNumber===3" style="margin-top: 86px;">
+    <div>
+      <div class="item item-avatar">
+        <img src="../img/ben.png">
+        <h2>积分更新</h2>
+        <p>11月14日</p>
+      </div>
+      <div class="card" style="box-shadow: none;border-bottom: 1px #eeeeee solid;margin-bottom: 0px">
+        <div class="spine-sick-avatar" style="margin-top: 0px;">
+         <!-- <img ng-src="img/zaixianzixun.png">-->
+        </div>
+        <div class="" style="text-align: center">
+          <h3>+10分</h3>
+          <div style="font-size: 16px;">11月14日积分更新</div>
+        </div>
+        <!-- <div style="text-align: center;padding: 10px;font-size: 18px;margin-bottom: 10px;color: rgba(0, 0, 0, 0.7);">
+   您11月13日的治疗记录已更新
+ </div>-->
+      </div>
+      <div class="" style="background: inherit;border: none;text-align: center;padding: 10px 0;color: #0a9dc7">查看
+      </div>
+      <div style="width: 100% !important;height: 12px;background: #eeeeee;"></div>
+    </div>
+  </ion-content>
+</ion-view>

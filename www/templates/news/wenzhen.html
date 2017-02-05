@@ -1,0 +1,185 @@
+<ion-view view-title="视频问诊" hide-tabs="true" hide-back-button="true">
+  <ion-content>
+    <div>
+      <video poster="img/ben.png" style="width: 100%;height: 90%;max-height: 90%;" controls autoplay></video>
+      <div class="button-bar bar-dark">
+      <!--  <button class="button icon-left ion-star ">准备</button>-->
+        <button class="button icon-left ion-ios-paper-outline " ng-click="Bmodal.show()">病历
+        </button>
+        <button class="button icon-left ion-android-image " ng-click="Xmodal.show()">X光片</button>
+        <button class="button icon-left ion-edit " ng-click="Rmodal.show()">结论</button>
+      </div>
+    </div>
+    <script id="bingli-modal.html" type="text/ng-template">
+      <ion-modal-view>
+        <ion-header-bar>
+          <h1 class="title bar-calm">病人基本信息</h1>
+          <button class="button button-primary" ng-click="Bmodal.hide()">Cancel</button>
+        </ion-header-bar>
+        <ion-content>
+          <div class="item item-text-wrap">
+            <div class="row">
+              <div class="col">姓名：{{patientDetailInfo.userName}}</div>
+              <div class="col">性别：{{patientDetailInfo.userSex =='1'?'男':'女'}}</div>
+              <div class="col">生日：{{patientDetailInfo.birthday}}</div>
+            </div>
+            <div class="row" style="margin-top: 50px;">
+              <div class="col">年龄：{{patientDetailInfo.ageNum}}</div>
+              <div class="col">身高：{{patientDetailInfo.userHeight}}CM</div>
+              <div class="col">体重：{{patientDetailInfo.userWeight}}KG</div>
+            </div>
+            <div class="row" style="margin-top: 50px;">
+              治疗病史:
+              <div style="border-bottom: 1px #000000 solid;min-width: 80%;padding-left: 10px;">无</div>
+            </div>
+            <div class="row" style="margin-top: 50px;">
+              初诊建议:
+              <div style="border-bottom: 1px #000000 solid;min-width: 80%;padding-left: 10px;">
+                {{patientDetailInfo.userRemark}}
+              </div>
+            </div>
+          </div>
+        </ion-content>
+      </ion-modal-view>
+    </script>
+    <script id="x-modal.html" type="text/ng-template">
+      <ion-modal-view>
+        <ion-header-bar>
+          <h1 class="title">x光片</h1>
+          <button class="button button-primary" ng-click="Xmodal.hide()">Cancel</button>
+        </ion-header-bar>
+        <ion-content>
+          <ul class="list">
+            <li class="item" ng-repeat="ximg in patientDetailInfo.patietnInfo.X_Img track by $index">
+              <div class="card">
+                <div class="item item-image">
+                  <img ng-src="{{ximg.src}}">
+                </div>
+                <div class="item item-divider">
+                  <h2 style="text-align: center">x光片名称1</h2>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </ion-content>
+      </ion-modal-view>
+    </script>
+    <script id="result-modal.html" type="text/ng-template">
+      <ion-modal-view>
+        <ion-header-bar>
+          <h1 class="title">提交诊断结果</h1>
+          <button class="button button-primary" ng-click="Rmodal.hide()">Cancel</button>
+        </ion-header-bar>
+        <ion-content>
+          <div class="card">
+            <div class="item  item-balanced">
+              请选择您的诊治意见
+              <!--   <h1 class="spine-title">提交诊断结果</h1>-->
+            </div>
+            <div class="item item-text-wrap">
+              <ion-radio ng-repeat="item in clientSideList"
+                         ng-value="item.value"
+                         ng-model="selectedData.choseValue">
+                {{ item.text }}
+              </ion-radio>
+            </div>
+          </div>
+          <div class="card" ng-if="selectedData.choseValue == 'refuse'">
+            <!--禁忌症-->
+            <div class="item item-divider">
+              请选择禁忌症：
+            </div>
+            <div class="item item-text-wrap">
+              <ion-checkbox class="item-checkbox-right" ng-repeat="item in jjzList"
+                            ng-model="item.checked"
+              >
+                {{ item.text }}
+              </ion-checkbox>
+            </div>
+          </div>
+          <div class="card" ng-if="selectedData.choseValue == 'yes'">
+            <!--治疗参数-->
+            <div class="item item-divider">
+              请填写治疗参数：
+            </div>
+            <div class="item item-text-wrap">
+              <div class="list">
+                <div class="item item-button-right">
+                  选择病变部位：
+                  <button class="button button-light" ng-click="openSickPlacePop($event)"
+                          style="max-width: 80%;overflow: hidden">
+                    {{selectedData.sickPlaceChosed}}
+                    <i style="margin-left: 10px;margin-right: -10px;" class="icon ion-android-arrow-dropdown"></i>
+                  </button>
+                </div>
+                <div class="item item-input item-select">
+                  <div class="input-label">
+                    选择病变偏向{{sickDir.value}}
+                  </div>
+                  <select ng-model="selectedData.sickDir" ng-options="option.key for option in sickDirs">
+                  </select>
+                </div>
+
+                <div class="item item-input item-select">
+                  <div class="input-label">
+                    选择病变程度
+                  </div>
+                  <select ng-model="selectedData.sickLevel" ng-options="option.key for option in sickLevels">
+                  </select>
+                </div>
+
+                <div class="item item-input item-select">
+                  <div class="input-label">
+                    冲击行程{{selectedData.ciDistance_chosed}}微调
+                  </div>
+                  <select ng-model="selectedData.ciDistance_chosed" ng-options="item for item in ciDistance_all">
+                  </select>
+                </div>
+
+                <div class="item item-input item-select">
+                  <div class="input-label">
+                    成角微调
+                  </div>
+                  <select ng-model="selectedData.ciAngulation_chosed" ng-options="item for item in ciAngulation_all">
+                  </select>
+                </div>
+                <div class="item item-input item-select">
+                  <div class="input-label">
+                    转角微调
+                  </div>
+                  <select ng-model="selectedData.ciCorner_chosed" ng-options="item for item in ciCorner_all">
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="item item-divider item-borderless">
+            <button class="button button-block button-assertive" ng-click="submitHZResult(ciDistance_chosed);"
+                    style="margin-bottom: 10px;">
+              提交诊断结果
+            </button>
+          </div>
+        </ion-content>
+      </ion-modal-view>
+    </script>
+
+    <script id="select-popover.html" type="text/ng-template">
+      <ion-popover-view>
+        <ion-header-bar>
+          <h1 class="title">选择病变部位</h1>
+        </ion-header-bar>
+        <ion-content>
+          <ion-checkbox ng-repeat="item in sickPlace"
+                        ng-model="item.checked"
+                        ng-checked="item.checked"
+          >
+            {{ item.text }}
+          </ion-checkbox>
+        </ion-content>
+      </ion-popover-view>
+    </script>
+  </ion-content>
+
+</ion-view>
+
+

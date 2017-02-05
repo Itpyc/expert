@@ -1,0 +1,55 @@
+<ion-view view-title="在线直播" hide-back-button="false" hide-nav-bar="false" hide-tabs="true">
+  <ion-content>
+    <div style="width: 100%;height: 90%;border: 1px red solid;">
+      <ion-slide-box id="test" style="width: 100%;height: 100%;border: 1px blue solid;" active-slide="myActiveSlide">
+        <ion-slide ng-repeat="item in slideData">
+         <!-- <div id="test2" style="text-align: center;margin-top: 60%;" on-tap="addSlidePage($index)">
+            <img ng-src="img/add.png" style="width: 40px;height: 40px;">
+            <p>新建一个新的幻灯片</p>
+          </div>-->
+          <div class="" style="text-align: center">
+            <input id="file" style="position: absolute;top: 70%;display: inline-block;" onchange="angular.element(this).scope().handleFiles(this.files)" type="file">
+          </div>
+         <canvas id="myCanvas1" style="width: 100%;height: 100%;border: 1px blue solid;">
+           </canvas>
+        </ion-slide>
+      </ion-slide-box>
+      <!--<canvas id="myCanvas" style="width: 100%;height: 100%;border: 1px blue solid;">
+      </canvas>-->
+      <video id="localVideo" autoplay muted poster="img/ben.png" controls
+             style="height: 100px;position: absolute;top: 100px;right: 10px;display: none"></video>
+    </div>
+
+    <div class="button-bar bar-calm">
+      <a class="button" ng-click="modal.show()" >准备</a>
+      <a class="button active" draggable="true" on-tap="startB()">开始直播</a>
+      <a class="button">文件共享</a>
+      <a class="button">关闭</a>
+    </div>
+  </ion-content>
+  <script id="ready-modal.html" type="text/ng-template">
+    <div class="modal">
+      <ion-header-bar class="bar bar-header">
+        <h1 class="title">状态设置</h1>
+        <button class="button button-primary" ng-click="modal.hide()">Cancel</button>
+      </ion-header-bar>
+      <ion-content>
+
+
+        <ion-toggle ng-model="status.checked" ng-checked="status.checked">
+          <i class="icon ion-ios-bell-outline" style="color: #0a9dc7;font-size: 25px;"></i>
+          <span ng-show="status.checked">在线</span>
+          <span ng-show="!status.checked">离线</span>
+        </ion-toggle>
+        <ion-toggle ng-repeat="item in serverlist"
+                    ng-model="item.checked"
+                    ng-checked="item.checked">
+          <i class="icon" ng-class="item.icon" style="color: #0a9dc7;font-size: 25px;"></i>
+          <span style="color: #660000;">{{ item.text }}</span>
+          <span ng-show="item.checked">开启</span>
+          <span ng-show="!item.checked">关闭</span>
+        </ion-toggle>
+      </ion-content>
+    </div>
+  </script>
+</ion-view>

@@ -1,0 +1,71 @@
+<ion-view view-title="治疗记录" class=""  hide-nav-bar="false" hide-tabs="true">
+  <ion-nav-back-button></ion-nav-back-button>
+  <div class="bar bar-header bar-dark">
+    <h1 class="title">治疗记录</h1>
+  </div>
+  <div class="list" style="margin-top: 40px;">
+    <label class="item item-dark item-input item-select" style="width: 100%">
+      <div class="input-label">
+        选择日期
+      </div>
+      <select>
+        <option>11月</option>
+        <option selected>12月</option>
+        <option>1月</option>
+      </select>
+    </label>
+    <div class="item item-borderless" style="padding: 0;">
+      <div class="row" style="text-align: center;padding: 0;">
+        <button ng-click="activeNumber=1"
+                ng-class="{active:activeNumber===2}"
+                class="col button button-outline  button-small button-block button-dark"
+                style="margin: 0;border-radius: 0">详细
+        </button>
+        <button ng-click="activeNumber=2"
+                ng-class="{active:activeNumber===1}"
+                class="col button button-outline  button-small button-block button-dark"
+                style="margin: 0;border-radius: 0">统计
+        </button>
+      </div>
+    </div>
+  </div>
+  <ion-content ng-show="activeNumber===1" style="margin-top: 130px;">
+    <div class="" style="margin: 0;padding: 0;">
+      <highchart id="chart1" style="width: 100%;margin: 0 auto;" config="chartConfig"></highchart>
+    </div>
+  </ion-content>
+  <ion-content ng-show="activeNumber===2" style="margin-top: 130px;">
+    <div class="list">
+      <div class="item" style="padding-top: 5px;padding-bottom: 5px;font-size: 15px;">
+        图文咨询
+        <span style="float: right;">2016-10-7</span>
+      </div>
+      <a class="item item-avatar" href="#" style="border: none;">
+        <img src="../img/zaixianzixun.png" style="border-radius: 5px;">
+        <h2>
+          <span>张三 </span>
+          <span style="color: #cccccc;font-size: smaller">| 男 30岁</span>
+          <span style="float: right;color: #cccccc;font-size: 15px;color: #0c60ee;">已拒绝</span>
+        </h2>
+        <p>腰疼，整夜整夜的疼，站都站不住，弓着身子还好点，走路基本走不了</p>
+      </a>
+      <div style="height: 10px;background: #eeeeee;width: 100%"></div>
+    </div>
+    <div class="item" style="padding-top: 5px;padding-bottom: 5px;font-size: 15px;">
+      图文咨询
+      <span style="float: right;">2016-10-7</span>
+    </div>
+    <a class="item item-avatar" href="#" style="border: none;">
+      <img src="../img/zaixianzixun.png" style="border-radius: 5px;">
+      <h2>
+        <span>张三 </span>
+        <span style="color: #cccccc;font-size: smaller">| 男 30岁</span>
+        <span style="float: right;color: #cccccc;font-size: 15px;color: #0c60ee;">已接诊</span>
+      </h2>
+      <p>腰疼，整夜整夜的疼，站都站不住，弓着身子还好点，走路基本走不了</p>
+    </a>
+    <div style="height: 10px;background: #eeeeee;width: 100%"></div>
+    </div>
+    </div>
+  </ion-content>
+</ion-view>
